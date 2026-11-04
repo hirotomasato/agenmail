@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
 import { CopyButton, IconButton } from "../components/ui";
+import { ThemeToggle } from "../components/ThemeToggle";
 import { useToast } from "../components/Toast";
 import {
   admin,
@@ -780,6 +781,7 @@ export function Dashboard({
             Dashboard
           </span>
           <div className="flex-1" />
+          <ThemeToggle />
           <IconButton aria-label="Refresh" onClick={refresh} disabled={refreshing}>
             <RefreshCw className={cx("size-4", refreshing && "animate-spin")} />
           </IconButton>

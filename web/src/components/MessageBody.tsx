@@ -63,7 +63,7 @@ export function MessageBody({ html, allowImages }: { html: string; allowImages: 
   const sanitized = useMemo(() => sanitizeHtml(html, allowImages), [html, allowImages]);
   return (
     <div
-      className="email-content text-label"
+      className="email-content"
       // eslint-disable-next-line react/no-danger -- sanitized above
       dangerouslySetInnerHTML={{ __html: sanitized }}
     />

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState, type FormEvent, type KeyboardEvent } from "react";
 import { admin, isUnauthorized } from "../lib/admin";
+import { ThemeToggle } from "../components/ThemeToggle";
 import { useToast } from "../components/Toast";
 import { cx } from "../lib/cx";
 
@@ -78,7 +79,7 @@ export function Login({ onDone, onHome }: { onDone: () => void; onHome: () => vo
         />
       </div>
 
-      <header className="mx-auto w-full max-w-[520px] px-5 pt-[max(env(safe-area-inset-top),1.1rem)]">
+      <header className="mx-auto flex w-full max-w-[520px] items-center justify-between px-5 pt-[max(env(safe-area-inset-top),1.1rem)]">
         <button
           type="button"
           onClick={onHome}
@@ -86,6 +87,7 @@ export function Login({ onDone, onHome }: { onDone: () => void; onHome: () => vo
         >
           <ArrowLeft className="size-3.5" /> Back
         </button>
+        <ThemeToggle />
       </header>
 
       <main className="mx-auto flex w-full max-w-[520px] flex-1 items-center px-5 pb-16 pt-8">

@@ -276,7 +276,7 @@ export function MessageDetail({
                 </div>
               ) : null}
 
-              <div className="px-4 py-4">
+              <div className={cx("px-4 py-4", view === "html" && detail?.html ? "email-surface" : "")}>
                 {error ? (
                   <div className="py-6 text-center">
                     <p className="text-[14px] text-secondary">{error.message}</p>

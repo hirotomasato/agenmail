@@ -1,6 +1,7 @@
 import { ChevronLeft, Inbox as InboxIcon, MailOpen, Paperclip, RefreshCw, TriangleAlert } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { MessageDetail } from "../components/MessageDetail";
+import { ThemeToggle } from "../components/ThemeToggle";
 import { useToast } from "../components/Toast";
 import { Avatar, CopyButton, IconButton, Segmented, SkeletonList, SwipeRow } from "../components/ui";
 import { ApiError, MailboxClient, type MailboxDto, type MessageSummaryDto } from "../lib/api";
@@ -161,6 +162,7 @@ export function Inbox({ token, onHome }: { token: string; onHome: () => void }) 
             </div>
           </div>
 
+          <ThemeToggle />
           <IconButton
             aria-label="Refresh"
             onClick={handleRefresh}

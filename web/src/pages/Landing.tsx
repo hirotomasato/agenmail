@@ -13,6 +13,7 @@ import {
   Zap,
 } from "lucide-react";
 import { CodeBlock, MethodPill } from "../components/CodeBlock";
+import { ThemeToggle } from "../components/ThemeToggle";
 import routeDocs from "../data/routes.json";
 import { avatarGradient, initials } from "../lib/format";
 import { cx } from "../lib/cx";
@@ -615,6 +616,7 @@ export function Landing({ onSignIn }: { onSignIn: () => void }) {
           </nav>
 
           <div className="flex-1" />
+          <ThemeToggle />
         </div>
       </header>
 
