@@ -1,0 +1,347 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-label: var(--label);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-hairline: var(--hairline);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-segment-track: var(--segment-track);
+  --color-segment-active: var(--segment-active);
+
+  --radius-ios: 1.375rem;
+}
+
+:root {
+  --canvas: #f2f2f7;
+  --surface: #ffffff;
+  --elevated: #ffffff;
+  --label: #0b0b0f;
+  --secondary: #6b6b73;
+  --tertiary: #a1a1aa;
+  --hairline: rgba(60, 60, 67, 0.14);
+  --accent: #007aff;
+  --accent-soft: rgba(0, 122, 255, 0.12);
+  --success: #248a3d;
+  --warning: #c93400;
+  --danger: #ff3b30;
+  --segment-track: rgba(120, 120, 128, 0.14);
+  --segment-active: #ffffff;
+  --glass: rgba(255, 255, 255, 0.72);
+  --shadow-card: 0 1px 2px rgba(9, 9, 11, 0.05), 0 8px 24px -18px rgba(9, 9, 11, 0.28);
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: #000000;
+    --surface: #1c1c1e;
+    --elevated: #2c2c2e;
+    --label: #f5f5f7;
+    --secondary: #9a9aa2;
+    --tertiary: #6c6c74;
+    --hairline: rgba(84, 84, 88, 0.48);
+    --accent: #0a84ff;
+    --accent-soft: rgba(10, 132, 255, 0.18);
+    --success: #30d158;
+    --warning: #ff9f0a;
+    --danger: #ff453a;
+    --segment-track: rgba(120, 120, 128, 0.24);
+    --segment-active: #636366;
+    --glass: rgba(18, 18, 20, 0.72);
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.6);
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--label);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button {
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+  }
+}
+
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+@utility pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 0.25rem);
+}
+
+@utility pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+@utility card-shadow {
+  box-shadow: var(--shadow-card);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -320px 0;
+  }
+  100% {
+    background-position: 320px 0;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  from {
+    transform: translate3d(-2%, -2%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3%, 4%, 0) scale(1.12);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  60% {
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ring {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.login-progress {
+  animation: progress 780ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+.animate-rise {
+  animation: rise 420ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+.animate-float {
+  animation: float 14s ease-in-out infinite alternate;
+}
+
+.animate-float-slow {
+  animation: float 20s ease-in-out infinite alternate-reverse;
+}
+
+.animate-shake {
+  animation: shake 420ms cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.animate-pop {
+  animation: pop 380ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+.animate-ring {
+  animation: ring 900ms ease-out;
+}
+
+.animate-sheet {
+  animation: sheet-in 320ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.animate-fade {
+  animation: fade-in 200ms ease-out;
+}
+
+.animate-toast {
+  animation: toast-in 220ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.skeleton {
+  background-image: linear-gradient(90deg, var(--hairline) 0%, rgba(120, 120, 128, 0.08) 50%, var(--hairline) 100%);
+  background-size: 640px 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.email-content {
+  overflow-wrap: anywhere;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.email-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.email-content table {
+  max-width: 100% !important;
+  border-collapse: collapse;
+}
+
+.email-content td,
+.email-content th {
+  max-width: 100%;
+}
+
+.email-content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.email-content a:hover {
+  text-decoration: underline;
+}
+
+.email-content blockquote {
+  margin: 12px 0;
+  padding-left: 12px;
+  border-left: 3px solid var(--hairline);
+  color: var(--secondary);
+}
+
+.email-content pre {
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.email-content h1,
+.email-content h2,
+.email-content h3 {
+  line-height: 1.25;
+}
+
+.email-content hr {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sheet,
+  .animate-fade,
+  .animate-toast,
+  .animate-rise,
+  .animate-float,
+  .animate-float-slow,
+  .animate-shake,
+  .animate-pop,
+  .animate-ring,
+  .login-progress,
+  .skeleton {
+    animation: none;
+  }
+}

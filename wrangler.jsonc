@@ -1,0 +1,45 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "agentmail",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+
+  // Static UI (built by `vite build` into dist/web).
+  // `/api/*` always hits the Worker; everything else is served from assets
+  // with SPA fallback so `/m/<token>` deep links work.
+  "assets": {
+    "directory": "./dist/web",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+
+  // Serve the dashboard, API and access links on a hostname that resolves normally.
+  "routes": [{ "pattern": "app.agenmail.my.id", "custom_domain": true }],
+
+  // Replace database_id after: wrangler d1 create agentmail
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "agentmail",
+      "database_id": "2980106f-3c91-4061-92df-23b56a5b58b1",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  // Replace bucket_name after: wrangler r2 bucket create agentmail-mail
+  "r2_buckets": [{ "binding": "MAIL", "bucket_name": "agentmail-mail" }],
+
+  // Purges only mailboxes created with an explicit ttl.
+  "triggers": { "crons": ["17 * * * *"] },
+
+  "vars": {
+    // Absolute origin used in accessUrl. Empty = derive from request.
+    // Set to https://app.example.com when using a Worker custom domain.
+    "PUBLIC_BASE_URL": "https://app.agenmail.my.id",
+    // Private deployment: mailboxes are created from the dashboard or with the admin token.
+    "PUBLIC_CREATE_ENABLED": "false"
+  }
+}
