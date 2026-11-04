@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=20.3"
+  },
   "scripts": {
     "dev:api": "wrangler dev",
     "dev:web": "vite",

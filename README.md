@@ -2,6 +2,12 @@
   <img src="assets/banner.svg" alt="AgentMail, inbox infrastructure for agents" width="100%" />
 </p>
 
+<p align="center">
+  <a href="https://github.com/hirotomasato/agenmail/actions/workflows/ci.yml"><img src="https://github.com/hirotomasato/agenmail/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT" /></a>
+  <img src="https://img.shields.io/badge/node-%3E%3D20.3-3c873a" alt="Node >= 20.3" />
+</p>
+
 Inbox infrastructure for agents, on your own domains. One Cloudflare Worker receives mail
 through Email Routing, stores it in D1 + R2, and exposes it as structured JSON. A private
 dashboard provisions mailboxes, and every mailbox has a short link for humans.
@@ -27,6 +33,8 @@ dashboard provisions mailboxes, and every mailbox has a short link for humans.
 - [Troubleshooting](#troubleshooting)
 - [Security notes](#security-notes)
 - [Project structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
 ```mermaid
 flowchart LR
@@ -448,3 +456,13 @@ test/             workerd integration and unit tests
 migrations/       D1 schema
 scripts/          smoke, demo seed, route and API audits
 ```
+
+## Contributing
+
+Issues and pull requests are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md) for
+setup, checks and conventions. Report security problems privately through
+[SECURITY.md](SECURITY.md), never in a public issue.
+
+## License
+
+MIT. See [LICENSE](LICENSE). Notable changes are tracked in [CHANGELOG.md](CHANGELOG.md).
